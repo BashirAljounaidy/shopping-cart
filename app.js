@@ -8,7 +8,7 @@ var indexRouter = require('./routes/index');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
-var flash = require(connect-flash);
+var flash = require('connect-flash');
 
 var app = express();
 
@@ -24,7 +24,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({secret:'mysupersecret',resave: false, saveUninitialized:false }));
-app.use
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
